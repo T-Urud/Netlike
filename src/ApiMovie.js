@@ -16,55 +16,44 @@ const fetchMovies = async ({ queryKey }) => {
   return data.results;
 };
 
-const fetchCategories = async ({ queryKey }) => {
-  const [, endpoint] = queryKey;
-
-  const res = await fetch(
-    `${API_URL}${endpoint}?language=en-US&api_key=${API_KEY}`
-  );
-
-  const categoriesData = await res.json();
-  console.log(categoriesData);
-  return categoriesData.genres;
+export default {
+  getHomeMovies: async () => {
+    return [
+      {
+        slug: "popular",
+        title: "Popular Movies",
+        items: await fetchMovies("movie/popular"),
+      },
+      {
+        slug: "top-rated",
+        title: "Top-rated Movies",
+        items: await fetchMovies("movie/top_rated"),
+      },
+      {
+        slug: "upcoming",
+        title: "Upcoming Movies",
+        items: await fetchMovies("movie/upcoming"),
+      },
+      {
+        slug: "popular series",
+        title: "Popular TV shows",
+        items: await fetchMovies("tv/popular"),
+      },
+      {
+        slug: "on-the-air",
+        title: "On the air series",
+        items: await fetchMovies("tv/on_the_air"),
+      },
+      {
+        slug: "top-rated TV series",
+        title: "Top-rated series",
+        items: await fetchMovies("tv/top_rated"),
+      },
+    ];
+  },
 };
 
-export const ApiCategories = () => {
-  const {
-    data: categories,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["categories", "genre/movie/list"],
-    queryFn: fetchCategories,
-  });
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  // Handle error state
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  if (!categories || !Array.isArray(categories)) {
-    return <div>No categories found.</div>;
-  }
-
-  return (
-    <div>
-      <h2>Categories List</h2>
-      <ul>
-        {categories.map((category) => (
-          <li key={category.id}>{category.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export const ApiMovie = () => {
+const ApiMovie = () => {
   const {
     data: movies,
     isLoading,
@@ -90,7 +79,7 @@ export const ApiMovie = () => {
 
   return (
     <div>
-      <h2>User List</h2>
+      <h2>Movie List</h2>
       <ul>
         {movies.map((movie) => (
           <Movie key={movie.id} movie={movie} />
@@ -99,3 +88,5 @@ export const ApiMovie = () => {
     </div>
   );
 };
+
+// export default ApiMovie;

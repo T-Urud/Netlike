@@ -1,11 +1,12 @@
 import React from "react";
-import { ApiMovie, ApiCategories } from "./ApiMovie.js";
+import ApiCategories from "./ApiCategories";
+import ApiMovie from "./ApiMovie";
 
 function App() {
   return (
     <div>
+      <ApiCategories />
       <ApiMovie />
-      <ApiCategories />;
     </div>
   );
 }
