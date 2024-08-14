@@ -1,10 +1,11 @@
 import React from "react";
+import ApiCategories from "./ApiCategories";
 
 const handleBtnClick = (category) => {
   console.log(category.name);
 
   // const filteredCategories = categories.filter(
-  //   (category) => category.categoryId.toString() === categoryId
+  //   (uniqueCategory) => uniqueCategory.categoryId.toString() === categoryId
   // );
 };
 
