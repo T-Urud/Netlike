@@ -1,13 +1,13 @@
 import React from "react";
 import ApiCategories from "./ApiCategories";
-import ApiMovie from "./ApiMovie";
+import Home from "./Home";
 
 function App() {
   return (
-    <div>
+    <main>
       <ApiCategories />
-      <ApiMovie />
-    </div>
+      <Home />
+    </main>
   );
 }
 export default App;
