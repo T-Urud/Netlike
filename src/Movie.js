@@ -7,17 +7,18 @@ const Movie = ({ movie, category }) => {
 
   return (
     <li className="relative mr-6">
-      <div className="w-[500px] h-[281px] rounded-2xl">
+      <motion.div className="w-[500px] h-[281px] rounded-2xl">
         <img
           src={`${imageBaseUrl}${movie.backdrop_path}`}
           alt={`${movie.title} poster`}
           className="w-full h-full object-cover rounded-2xl"
         />
-      </div>
+      </motion.div>
       <div className="absolute bottom-0 w-full p-2 bg-[#a6adbb00] rounded-b-2xl">
-        <div className="flex justify-between items-center">
-          <p className="text-xl font-semibold text-white">{movie.title}</p>
-          <div className="flex items-center justify-center p-1 opacity-80">
+        <div className="flex justify-between items-center text-white">
+          <p className="text-xl font-semibold">{movie.title || movie.name}</p>
+          <p className="cursor-pointer">See More</p>
+          {/* <div className="flex items-center justify-center p-1 opacity-80">
             <span className={rate > 0 ? "text-white" : "text-[#1d232a]"}>
               &#9733;
             </span>
@@ -33,7 +34,7 @@ const Movie = ({ movie, category }) => {
             <span className={rate > 4 ? "text-white" : "text-[#1d232a]"}>
               &#9733;
             </span>
-          </div>
+          </div> */}
         </div>
         <p>{category.name}</p>
       </div>
