@@ -1,5 +1,4 @@
 import React from "react";
-import ApiCategories from "./ApiCategories";
 
 const handleBtnClick = (category) => {
   console.log(category.name);
@@ -11,8 +10,10 @@ const handleBtnClick = (category) => {
 
 const Category = ({ category }) => {
   return (
-    <li key={category.id}>
-      <button onClick={() => handleBtnClick(category)}>{category.name}</button>
+    <li key={category.id} className="">
+      <button className="btn" onClick={() => handleBtnClick(category)}>
+        {category.name}
+      </button>
     </li>
   );
 };

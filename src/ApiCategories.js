@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Category from "./Category";
 
@@ -18,6 +18,8 @@ const fetchCategories = async ({ queryKey }) => {
 };
 
 const ApiCategories = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
   const {
     data: categories,
     isLoading,
@@ -42,14 +44,26 @@ const ApiCategories = () => {
   }
 
   return (
-    <div>
-      <h2>Categories List</h2>
-      <ul>
+    <section>
+      <div className="flex justify-between items-center font-semibold">
+        <h2>Categories</h2>
+        <span
+          className="text-sm cursor-pointer"
+          onClick={() => setIsClicked(true)}
+        >
+          View All
+        </span>
+      </div>
+      <ul
+        className={`flex justify-start gap-1 max-w-[375px] my-2 ${
+          isClicked ? "overflow-auto" : "overflow-hidden"
+        }`}
+      >
         {categories.map((category) => (
           <Category key={category.id} category={category} />
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 
