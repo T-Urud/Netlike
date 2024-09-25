@@ -5,29 +5,49 @@ import ApiCategories from "../ApiCategories";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import Header from "../Header";
+import rightChevronSvg from "../svg/chevron-right.svg";
+import leftChevronSvg from "../svg/chevron-left.svg";
 
 const Home = () => {
   const navigate = useNavigate();
   const [width, setWidth] = useState(0);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
   const carousel = useRef(null);
 
   const handleMovieClick = (id) => {
     navigate(`/movie/${id}`);
   };
 
+  const updateScrollWidth = () => {
+    if (carousel.current) {
+      const scrollWidth = carousel.current.scrollWidth;
+      const offsetWidth = carousel.current.offsetWidth;
+      setWidth(scrollWidth - offsetWidth);
+
+      // Check if content can scroll left or right
+      setCanScrollLeft(carousel.current.scrollLeft > 0);
+      setCanScrollRight(
+        carousel.current.scrollLeft < scrollWidth - offsetWidth
+      );
+    }
+  };
+
   useEffect(() => {
-    const handleResize = () => {
-      if (carousel.current) {
-        setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    updateScrollWidth();
+    window.addEventListener("resize", updateScrollWidth);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", updateScrollWidth);
     };
   }, []);
+
+  const handleScroll = (direction) => {
+    if (carousel.current) {
+      const scrollAmount = direction === "left" ? -300 : 300;
+      carousel.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
 
   const { data: movieCategories, isLoading, error } = ApiMovie();
 
@@ -62,6 +82,20 @@ const Home = () => {
                   <Movie key={movie.id} movie={movie} category={category} />
                 ))}
               </motion.ul>
+              {canScrollRight && (
+                <div className="absolute z-20 right-0 bottom-1/2 translate-y-1/2">
+                  <button onScroll={() => handleScroll("right")}>
+                    <img src={rightChevronSvg} alt="" className="w-9 h-9" />
+                  </button>
+                </div>
+              )}
+              {canScrollLeft && (
+                <div className="absolute z-20 left-0 bottom-1/2 translate-y-1/2">
+                  <button onScroll={() => handleScroll("left")}>
+                    <img src={leftChevronSvg} alt="" className="w-9 h-9" />
+                  </button>
+                </div>
+              )}
             </motion.div>
           </section>
         ))}

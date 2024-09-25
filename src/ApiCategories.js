@@ -44,11 +44,11 @@ const ApiCategories = () => {
   }
 
   return (
-    <section>
-      <div className="flex justify-between items-center font-semibold">
+    <section className="max-w-[375px]">
+      <div className="flex justify-between items-baseline gap-4 font-semibold">
         <h2>Categories</h2>
         <span
-          className="text-sm cursor-pointer"
+          className="text-xs cursor-pointer"
           onClick={() => setIsClicked(true)}
         >
           View All
