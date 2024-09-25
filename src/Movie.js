@@ -6,37 +6,37 @@ const Movie = ({ movie, category }) => {
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
-    <li>
-      <div className="w-[500px] h-[281px] rounded-2xl pr-6">
+    <li className="relative mr-6">
+      <div className="w-[500px] h-[281px] rounded-2xl">
         <img
           src={`${imageBaseUrl}${movie.backdrop_path}`}
           alt={`${movie.title} poster`}
           className="w-full h-full object-cover rounded-2xl"
         />
       </div>
-      {/* <div className="absolute bottom-0 w-full p-2 bg-[#a6adbb] rounded-2xl">
-        <div className="flex justify-between items-center ">
-          <p className="text-xl font-semibold text-black">{movie.title}</p>
+      <div className="absolute bottom-0 w-full p-2 bg-[#a6adbb00] rounded-b-2xl">
+        <div className="flex justify-between items-center">
+          <p className="text-xl font-semibold text-white">{movie.title}</p>
           <div className="flex items-center justify-center p-1 opacity-80">
-            <span className={rate > 0 ? "text-black" : "text-white"}>
+            <span className={rate > 0 ? "text-white" : "text-[#1d232a]"}>
               &#9733;
             </span>
-            <span className={rate > 1 ? "text-black" : "text-white"}>
+            <span className={rate > 1 ? "text-white" : "text-[#1d232a]"}>
               &#9733;
             </span>
-            <span className={rate > 2 ? "text-black" : "text-white"}>
+            <span className={rate > 2 ? "text-white" : "text-[#1d232a]"}>
               &#9733;
             </span>
-            <span className={rate > 3 ? "text-black" : "text-white"}>
+            <span className={rate > 3 ? "text-white" : "text-[#1d232a]"}>
               &#9733;
             </span>
-            <span className={rate > 4 ? "text-black" : "text-white"}>
+            <span className={rate > 4 ? "text-white" : "text-[#1d232a]"}>
               &#9733;
             </span>
           </div>
         </div>
         <p>{category.name}</p>
-      </div> */}
+      </div>
     </li>
   );
 };

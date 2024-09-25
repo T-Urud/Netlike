@@ -28,11 +28,11 @@ const Home = () => {
     <div>
       <ApiCategories />
       {movieCategories.map((category) => (
-        <section key={category.slug}>
+        <section key={category.slug} className="my-8">
           <h2 className="font-semibold text-xl">{category.title}</h2>
           <motion.div
             ref={carousel}
-            className="mt-2 flex cursor-grab overflow-hidden relative z-10"
+            className="mt-2 flex cursor-grab overflow-hidden relative"
             whileTap={{ cursor: "grabbing" }}
           >
             <motion.ul
