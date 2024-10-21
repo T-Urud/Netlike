@@ -1,12 +1,13 @@
 import { React, useRef, useEffect, useState } from "react";
-import ApiMovie from "../ApiMovie";
-import Movie from "../Movie";
-import ApiCategories from "../ApiCategories";
+import ApiMovie from "../api/ApiMovie";
+import Movie from "../components/Movie";
+import ApiCategories from "../api/ApiCategories";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
-import Header from "../Header";
+import Header from "../components/Header";
 import rightChevronSvg from "../svg/chevron-right.svg";
 import leftChevronSvg from "../svg/chevron-left.svg";
+import Carousel from "../components/Carousel";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -64,17 +65,17 @@ const Home = () => {
       <Header />
       <main>
         <ApiCategories />
+        <Carousel />
         {movieCategories.map((category) => (
           <section key={category.slug} className="my-8">
             <h2 className="font-semibold text-xl">{category.title}</h2>
             <motion.div
               ref={carousel}
               className="mt-2 w-full flex cursor-grab overflow-hidden relative"
-              // whileTap={{ cursor: "grabbing" }}
+              whileTap={{ cursor: "grabbing" }}
             >
               <motion.ul
                 drag="x"
-                // dragConstraints={{ right: 0 }}
                 dragConstraints={{ right: 0, left: -width }}
                 className="flex"
               >

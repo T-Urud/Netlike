@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import popcornSVG from "./svg/popcorn.svg";
-import logoutSVG from "./svg/logout.svg";
+import popcornSVG from "../svg/popcorn.svg";
+import logoutSVG from "../svg/logout.svg";
 
 const Header = () => {
   const [userName, setUserName] = useState("Theo");

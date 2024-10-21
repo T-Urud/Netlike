@@ -1,10 +1,10 @@
 import { React, useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
+const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 const Movie = ({ movie, category }) => {
   const [isHover, setIsHover] = useState("false");
   // const rate = Math.round((Number(movie.vote_average) / 2) * 2) / 2;
-  const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
     <motion.li
